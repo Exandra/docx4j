@@ -276,6 +276,9 @@ public class ContentTypes {
 
 	public final static String SPREADSHEETML_TEMPLATE = 
 		"application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml";;
+
+	public final static String SPREADSHEET = 
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 	
 	// PartName="/xl/workbook.xml"
 	public final static String SPREADSHEETML_WORKBOOK = 
