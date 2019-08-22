@@ -2,13 +2,358 @@ CHANGELOG
 =========
 
 
+Version 8.1.1 minor release 
+=============
+
+Release date
+------------
+
+29 June 2019
+
+
+Contributors to this release
+----------------------------
+
+ChilamYan 
+	
+Jason Harrop
+
+
+Notable Changes in Version 8.1.1 
+---------------------------------
+
+Bugfix: specify UTF-8 in MainDocumentPartFilterOutputStream
+
+Support for embedded True Type Fonts. (Up until now, we only supported obfuscated embeddings)
+
+
+xlsx4j
+------
+
+Bugfix: Correct jcSML spreadsheetDrawing package name
+
+Support mc:alternateContent in Workbook part (ie instead of dropping it)
+
+
+
+
+Version 8.1.0 
+=============
+
+Release date
+------------
+
+21 May 2019
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Notable Changes in Version 8.1.0 
+---------------------------------
+
+Update [MS-PPTX] and [MS-ODRAWXML] content models with latest schemas.
+
+Implement child in dml
+
+Re-packaged subset of Guava to shave 2.4MB off deps size 
+
+StyleTree handles default table style (used by MergeDocx)
+
+docx4j
+------
+
+Support adding altChunk at specified index
+
+VariablePrepare: make settings configurable
+
+Move anon out of core to a dedicated Maven module
+
+pptx4j
+------
+
+support mc:AlternateContent in slide shape tree
+
+Implement child in pml
+
+
+
+Version 8.0.0 
+=============
+
+Release date
+------------
+
+21 April 2019
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Notable Changes in Version 8.0.0 
+---------------------------------
+
+Minimum supported Java version is 8.0
+
+docx4j 8 should be easier to deploy in complex environments such as OSGi, JBoss EAP etc.
+
+docx4j is now a Maven multi-module project.  To use it via Maven, add just one of docx4j-JAXB-Internal, docx4j-JAXB-MOXy,
+or docx4j-JAXB-ReferenceImpl dependencies. 
+
+Various dependencies were updated (some of which require Java 1.8)
+
+OpenDoPE support for XPath 2.0, 3.0 (requires Saxon)
+
+Uses repackaged and mavenized Xalan; see https://github.com/plutext/xalan-j/tree/Plutext_Java8_Repackaged_Docx4j
+
+
+
+Version 6.1.2 minor release 
+=============
+
+Release date
+------------
+
+27 February 2019
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+rmanitz
+
+
+Notable Changes in Version 6.1.2 
+---------------------------------
+
+Fix for #340 Field handling NumberExtractor, handle group separator '.' (eg German) correctly.
+
+New property docx4j.Fields.Numbers.JavaStylePercentHandling which if set to true multiplies the value by hundred.  
+For example, formatting 0.33 with "\\# ##%" would yield 33%.
+
+Fix for #344 (NPE in TraversalUtil in graphicData)
+Fix for #346 (relating to Fields)
+
+xlsx4j
+------
+
+Convenience method to access ThemePart
+
+
+Version 6.1.1 
+=============
+
+Release date
+------------
+
+21 January 2019
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Notable Changes in Version 6.1.1 
+---------------------------------
+
+vml and mc lists are now of type ArrayListVml|Mce respecitvely, in which parent object is automatically set correctly
+(as is done for wml objects)
+
+TraversalUtil replaceChildren: support replacing in a bare List object.
+
+OpenDoPE removal handler: new option ALL_BUT_PLACEHOLDERS_CONTENT, 
+Ordinarily, if an SDT contains XML but no real content, that XML is also removed.  
+Choose this option if you want to keep placeholder XML (but remove the SDT).
+
+
+
+Version 6.1.0 
+=============
+
+Release date
+------------
+
+15 December 2018
+
+Contributors to this release
+----------------------------
+
+https://github.com/adolbin
+
+Jason Harrop
+
+https://github.com/Lood
+
+Mioara
+
+https://github.com/P2EQgf
+
+https://github.com/verkhovin
+
+
+
+Notable Changes in Version 6.1.0 
+---------------------------------
+
+IMPORTANT: Force namespaces used in mc:choice to be declared top-level. If 
+they aren't there, Word can't open the docx.
+
+mc:Ignorable: support attribute in footnotes/endnotes, numbering, styles 
+(already supported in main and headers/footers) 
+
+w14 namespace handling improvements: Don't drop these attributes in mc-preprocessor.xslt; 
+Support w14:EG_RPrOpenType elements
+
+PDF Converter now defaults to localhost endpoint to avoid information leakage.
+(controlled by docx4j property com.plutext.converter.URL)
+The localhost endpoint will only work if you download and install the converter there! 
+If you choose to use converter-eval.plutext.com, please only use it for light testing purposes.
+
+BookmarksIntegrity checking now part of docx4j proper; used before ToC updating
+
+AttachTemplate now part of docx4j proper; method cloneAs
+
+OpenDoPE finisher: optional step in which formatting can be applied
+(this is often neater than using conditional content controls just for formatting)
+
+OpenDoPE RemovalHandler: new Quantifier.ALL_BUT_PLACEHOLDERS (ie remove content controls, 
+but keep any placeholders inserted where there is empty content), ability to specify 
+Quantifier via docx4j.properties; also ability to substitute your own RemovalHandler.xslt.
+
+OpenDoPE: simplified component processing model [requires Enterprise]:
+ 1. components don't have to be at the top paragraph level of the content tree,
+ BUT:
+ 2. component processing is now done before condition/repeat processing
+ 3. component processing is not recursive anymore
+ 4. components typically use the "main" answer file
+component processing is OFF by default
+Enable it with property "docx4j.model.datastorage.OpenDoPEHandlerComponents.enabled"
+
+
+Version 6.0.1 
+=============
+
+Release date
+------------
+
+3 August 2018
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+Notable Changes in Version 6.0.1 
+---------------------------------
+
+In many cases v6.0.0 release writes <?xml version="1.0" ?> omitting encoding "UTF-8".
+This release corrects that, and is recommended for this reason.
+
+
+Version 6.0.0 (NOT RECOMMENDED)
+=============
+
+Release date
+------------
+
+22 July 2018
+
+Contributors to this release
+----------------------------
+
+ewanmellor (NationalBI)
+
+Jason Harrop
+
+
+Notable Changes in Version 6.0.0 
+---------------------------------
+
+Docx4j 6.x will be the last series supporting Java 6.  
+(docx4j 7.x, when released, will require Java 7+) 
+
+New dependency commons-compress used for zip/unzip.  Most other
+deps updated to last version supporting Java 6.
+
+Support for Java 9 and 10 (see notes in README for use in Eclipse)
+- Maven profiles for java 9 and 10 
+- Maven pom now specifies source & target 1.6 (previously 1.5)
+
+Preserve mc:AlternateContent in a run. Previously, this would have caused mc-preprocessor 
+to be invoked, selecting one of the pieces of content.
+
+Object model for wps http://schemas.microsoft.com/office/word/2010/wordprocessingShape
+
+Content Control databinding (and OpenDoPE)
+- UpdateXmlFromDocumentSurface: Copy content control content back to the custom XML part, like Microsoft Word does for a content control
+ which has a w:databinding element
+- improvements to migration (from eg VariableReplace)
+- better support for binding standardised Answers format
+- various other improvement
+
+Write docx4j version as XML comment in MainDocument part.
+
+New properties docx4j.openpackaging.parts.MAX_BYTES.unzip.error and docx4j.openpackaging.parts.MAX_BYTES.unmarshal.error which can be 
+set to positive values to have docx4j throw a PartTooLarge exception 
+if a part is larger than the set value. 
+
+
+
+Version 3.3.7  minor release
+=============
+
+Release date
+------------
+
+25 March 2018
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Notable Changes in Version 3.3.7 
+---------------------------------
+
+OpenDoPE: handle w15:databinding; FlatOPC processing fixes; component handling fixes
+
+PDF Converter (commercial, not export-FO) defaults to https (port 443)
+
+IBM JAXB detection improvements
+
+various other fixes
+
+
+
 Version 3.3.6  minor release
 =============
 
 Release date
 ------------
 
-xx August 2017
+7 October 2017
+
+Contributors to this release
+----------------------------
+
+ai-github
+
+Exandra
+
+Jason Harrop
+
+whisper2shade
 
 
 Notable Changes in Version 3.3.6 
@@ -17,6 +362,17 @@ Notable Changes in Version 3.3.6
 @XmlRootElement on webextension and taskpanes
 
 OpenDoPE performance enhancements:  pre-calculate repeat counts and simple conditions for substantial time saving in ODH step
+
+JAXB representation of c14 (http://schemas.microsoft.com/office/drawing/2007/8/2/chart) from odrawxml/chart20070802.xsd
+
+OpenDoPE: bind date sdt
+
+JaxbXmlPart new method transform(Templates xslt, Map<String, Object> transformParameters, Result result)
+
+xlsx4j
+------
+
+Chartsheetpart
 
 
 
