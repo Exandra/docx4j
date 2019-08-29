@@ -2,6 +2,132 @@ CHANGELOG
 =========
 
 
+Version 8.1.3 minor release
+==============
+
+Release date
+------------
+
+29 August 2019
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Changes in Version 8.1.3 
+-------------------------
+
+Port changes in 11.1.3 (as to which see below) back to 8.1.x 
+
+
+
+Version 11.1.3 minor release
+==============
+
+Release date
+------------
+
+28 August 2019
+
+Overview 
+--------
+
+11.1.3 is a JPMS modularised release.  
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Changes in Version 11.1.3 
+-------------------------
+
+improved diagnostics for XML factories
+
+handle newline chars in createParagraphOfText
+
+OpenDoPE: access resources in org.docx4j.model.datastorage (Widen opens in module-info)
+
+FieldUpdater patch (#343)
+
+pptx4j
+------
+
+Improve API for adding slide notes
+
+Bugfix: HandoutMasterPart part name must start with '/' 
+
+
+
+Version 11.1.2 
+==============
+
+Release date
+------------
+
+5 August 2019
+
+Overview 
+--------
+
+11.1.2 is a JPMS modularised release.  It incorporates changes made in 8.1.1 and 8.1.2 (ie changes since 11.1.0 was released)
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+ChilamYan
+
+
+Notable Changes in Version 11.1.2 
+---------------------------------
+
+Widen opens in pptx4j/xlsx4j module-info
+
+Bugfix: synchronize access to namespacePrefixMapper to avoid "namespacePrefixMapper is null" in multithreaded scenarios
+
+Bugfix: specify UTF-8 in MainDocumentPartFilterOutputStream
+
+Support for embedded True Type Fonts. (Up until now, we only supported obfuscated embeddings)
+
+xlsx4j
+------
+
+Bugfix: Correct jcSML spreadsheetDrawing package name
+
+Support mc:alternateContent in Workbook part (ie instead of dropping it)
+
+
+
+Version 8.1.2 minor release 
+=============
+
+Release date
+------------
+
+31 July 2019
+
+
+Contributors to this release
+----------------------------
+	
+Jason Harrop
+
+
+Notable Changes in Version 8.1.2 
+---------------------------------
+
+Bugfix: synchronize access to namespacePrefixMapper to avoid "namespacePrefixMapper is null" in multithreaded scenarios
+
+
+
 Version 8.1.1 minor release 
 =============
 
@@ -34,6 +160,54 @@ Bugfix: Correct jcSML spreadsheetDrawing package name
 
 Support mc:alternateContent in Workbook part (ie instead of dropping it)
 
+
+
+Version 11.1.0 
+==============
+
+Release date
+------------
+
+2 June 2019
+
+
+Contributors to this release
+----------------------------
+
+Jason Harrop
+
+
+Notable Changes in Version 11.1.0 
+---------------------------------
+
+11.1.0 is our first JPMS modularised release, so the jars contain module-info.class entries.
+
+The module names correspond to our Maven modules: 
+
+	org.docx4j.openxml_objects 
+	org.docx4j.openxml_objects_pml 
+	org.docx4j.openxml_objects_sml 
+	
+	org.docx4j.core 
+	
+	org.docx4j.JAXB_MOXy 
+	org.docx4j.JAXB_ReferenceImpl 
+
+We require named modules:
+
+    docx4j_xalan_serializer
+    docx4j_xalan_interpretive
+	org.slf4j
+	
+(Other dependencies generally aren't JPMS-ready, so they go on the classpath in the "unnamed" module.)	
+
+11.1.0 is compiled with Java 12, targeting Java 11.
+
+jackson-databind dep bumped to 2.9.9.
+
+In other respects this release is the same as v8.1.0, except that docx4j-export-fo 
+is temporarily omitted since Maven compiler doesn't like FOP 2.3's avalon dependency.  
+When FOP 2.4 is released, we should be able to include it again.
 
 
 

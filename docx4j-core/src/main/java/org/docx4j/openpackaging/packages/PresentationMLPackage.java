@@ -267,6 +267,7 @@ public class PresentationMLPackage  extends OpcPackage {
 	 * @throws InvalidFormatException
 	 * @throws JAXBException
 	 */
+	@Deprecated
 	public static NotesSlidePart createNotesSlidePart(Part sourcePart, PartName partName) throws Exception {
 
         String proposedRelId = sourcePart.getRelationshipsPart().getNextId();
@@ -315,8 +316,7 @@ public class PresentationMLPackage  extends OpcPackage {
 		}
 		
 		// All this for the 16 possible things defined in STPlaceholderType!
-		
-		Map<String, ShapeWrapper> globalPlaceHolders = new HashMap<String, ShapeWrapper>();
+		globalPlaceHolders = new HashMap<String, ShapeWrapper>();
 		
 		Iterator partIterator = this.getParts().getParts().entrySet().iterator();
 	    while (partIterator.hasNext()) {
